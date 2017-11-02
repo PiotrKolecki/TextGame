@@ -10,7 +10,7 @@ void Print_stats(char* name, int phys_att, int phys_def, int mag_att, int mag_de
 }
 
 void Choose_stats(char* name, int& phys_att, int& phys_def, int& mag_att, int& mag_def, int& health) {
-	int available_points = AVAILABLE_POINTS - 1;
+	int available_points = AVAILABLE_POINTS - 1;		// -1 so you can't spawn with 0 health (i may change it with story)
 	int input_value = 0;
 	
 	std::cout<<"You have "<<available_points<<" points to spend"<<std::endl;
@@ -123,7 +123,8 @@ void Add_stat(char* name, int& phys_att, int& phys_def, int& mag_att, int& mag_d
 }
 
 void Death() {
-	std::cout<<std::endl<<std::endl<<std::endl<<std::endl<<"YOU DIED"<<std::endl<<"GAME OVER"<<std::endl<<std::endl<<std::endl<<std::endl;
+	std::cout<<std::endl<<std::endl<<std::endl<<std::endl<<"YOU DIED"<<std::endl;
+	std::cout<<"GAME OVER"<<std::endl<<std::endl<<std::endl<<std::endl;
 	std::cout<<"Press \"ENTER\" to continue"<<std::endl<<std::endl;
 	std::cout<<"- - - - - - - - - -"<<std::endl<<std::endl;
 	// first get() gets cache

@@ -15,8 +15,8 @@ void Generate_monster(char* name, int& phys_att, int& phys_def, int& mag_att, in
 // type is picked in main.cpp
 void Attack(int attack, int defence, int& health);
 
-// this one just needs stats that will be recorded
-void Monster_death(char* name, int& phys_att, int& phys_def, int& mag_att, int& mag_def, int number_of_monsters);
-
+// this one needs stats that will be recorded and a place to store them
+void Monster_death(char* name, int& phys_att, int& phys_def, int& mag_att, int& mag_def, int** record_phys_att, int** record_phys_def, int** record_mag_att, int** record_mag_def, int* number_of_monsters);
+	
 // prints all defeated monsters
-void Print_defeated_monsters(char** names, int* phys_att, int* phys_def, int* mag_att, int* mag_def, int number_of_monsters);
+void Print_defeated_monsters(int* phys_att, int* phys_def, int* mag_att, int* mag_def, int number_of_monsters);

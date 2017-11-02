@@ -62,11 +62,38 @@ void Attack(int attack, int defence, int& health) {
 	health -=  damage > 0 ? damage : 0;
 }
 
-void Monster_death(char* name, int& phys_att, int& phys_def, int& mag_att, int& mag_def, int number_of_monsters) {
+void Monster_death(char* name, int& phys_att, int& phys_def, int& mag_att, int& mag_def, int** record_phys_att, int** record_phys_def, int** record_mag_att, int** record_mag_def, int* number_of_monsters) {
 	std::cout<<"You defeated "<<name<<std::endl<<std::endl;
+	
+	// increase number of defeated monsters so there is no need to add 1 to new size
+	(*number_of_monsters)++;
+	
+	// record monster stats
+	*record_phys_att = (int*)realloc(*record_phys_att, *(number_of_monsters) * sizeof(int));
+	*(*record_phys_att + *number_of_monsters - 1) = phys_att;
+	
+	*record_phys_def = (int*)realloc(*record_phys_def, *(number_of_monsters) * sizeof(int));
+	*(*record_phys_def + *number_of_monsters - 1) = phys_def;
+	
+	*record_mag_att = (int*)realloc(*record_mag_att, *(number_of_monsters) * sizeof(int));
+	*(*record_mag_att + *number_of_monsters - 1) = mag_att;
+	
+	*record_mag_def = (int*)realloc(*record_mag_def, *(number_of_monsters) * sizeof(int));
+	*(*record_mag_def + *number_of_monsters - 1) = mag_def;
 }
 
-
-void Print_defeated_monsters(char** names, int* phys_att, int* phys_def, int* mag_att, int* mag_def, int number_of_monsters) {
+void Print_defeated_monsters(int* phys_att, int* phys_def, int* mag_att, int* mag_def, int number_of_monsters) {
+	int i = 0;
 	
+	std::cout<<"You have defeated "<<number_of_monsters<<" monsters"<<std::endl<<std::endl;
+	std::cout<<"ID	Phys att	Phys def	Mag att		Mag def"<<std::endl;
+	
+	for(i = 1; i <= number_of_monsters; i++) {
+		std::cout<<i<<"	";
+		std::cout<<*(phys_att + i - 1)<<"		";
+		std::cout<<*(phys_def + i - 1)<<"		";
+		std::cout<<*(mag_att + i - 1)<<"		";
+		std::cout<<*(mag_def + i - 1)<<"		";
+		std::cout<<std::endl;
+	}
 }
